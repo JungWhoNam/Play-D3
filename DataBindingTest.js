@@ -52,3 +52,20 @@ var td = tr.selectAll("tr")
     .enter()
     .append("td")
     .text((d) => d);
+
+// animated hover-over effect
+d3.selectAll("tr")
+    .on("mouseover", function(event) {
+        d3.select(this)
+        .transition()
+        .duration(500)
+        .style("background-color", "orange");
+
+        console.log(event);
+        console.log(d3.pointer(event)); // relative to the specified target
+    })
+    .on("mouseout", function() {
+        d3.select(this)
+        .interrupt().transition() // stop any active transition and cancel any scheduled one
+        .style("background-color", "transparent");
+    });
