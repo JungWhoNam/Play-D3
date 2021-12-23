@@ -38,3 +38,12 @@ bar.append("text")
         isLeftAligned(d) ? ".35em" : "-.35em"
     )
     .attr("dy", ".35em");
+
+var xScale = d3.scaleLinear()
+                .domain([0, d3.max(data)])
+                .range([0, width]);
+var xAxis = d3.axisBottom().scale(xScale);
+svg.append("g")
+    .attr("transform", `translate(0,0)`)
+    .attr("class", "axis")
+    .call(xAxis);
